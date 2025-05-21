@@ -4,14 +4,32 @@ version = "0.1.0"
 description = "A python project for interpolation methods"
 authors = ["Your Name <you@example.com>"]
 license = "MIT"
+readme = "README.md"
+packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-numpy = "^2.2.4"
-matplotlib = "^3.10.1"
+numpy = "^2.2.4"  # Совместимо с poetry.lock
+matplotlib = "^3.10.1"  # Совместимо с poetry.lock
+click = "^8.1.0"  # Для CLI-интерфейса
+pillow = "^11.1.0"  # Для работы с изображениями
 
 [tool.poetry.dev-dependencies]
+pytest = "^7.4.0"  # Для тестов
+pytest-cov = "^4.1.0"  # Для измерения покрытия тестами
+ruff = "^0.6.9"  # Для линтинга и форматирования
+sphinx = "^7.0.0"  # Для документации
+nox = "^2024.4.15"  # Для автоматизации задач
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W", "I", "N", "B", "Q", "ANN", "D"]
+ignore = ["D100", "D104", "ANN101"]  # Игнорировать отсутствие docstrings для модулей, пакетов и self
+target-version = "py310"
+
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-report=term-missing --cov-fail-under=95"
