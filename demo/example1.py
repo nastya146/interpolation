@@ -9,7 +9,7 @@ from src.lagrange_interpolation import lagrange_interpolation_2d
 from src.linear_interpolation import bilinear_interpolation
 
 
-def main():
+def main() -> None:
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     data_dir = os.path.join(base_dir, "data")
 

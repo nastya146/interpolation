@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def linear_interpolation(x, y, x_new):
+def linear_interpolation(x: list, y: list, x_new: list) -> list:
     """1D билинейная интерполяция"""
     y_new = []
     for xi in x_new:

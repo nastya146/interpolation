@@ -10,7 +10,7 @@ from .linear_interpolation import bilinear_interpolation
 
 
 @click.group()
-def cli():
+def cli() -> None:
     """CLI для алгоритмов 2D интерполяции"""
     pass
 
@@ -58,7 +58,9 @@ def cli():
     default="bilinear",
     help="Interpolation algorithm",
 )
-def interpolate(x_coords, y_coords, values, x_new, y_new, output, algorithm):
+def interpolate(
+    x_coords: str, y_coords: str, values: str, x_new: str, y_new: str, output: str, algorithm: str
+) -> np.ndarray:
     """Вызов 2D интерполяции для набора точек"""
     if output is None:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M")

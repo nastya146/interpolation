@@ -19,6 +19,8 @@ pytest = "^7.4.0"  # Для тестов
 pytest-cov = "^4.1.0"  # Для измерения покрытия тестами
 ruff = "^0.6.9"  # Для линтинга и форматирования
 sphinx = "^7.0.0"  # Для документации
+sphinx-rtd-theme = "^2.0.0"
+mypy = "^1.11.2"
 nox = "^2024.4.15"  # Для автоматизации задач
 
 [build-system]
@@ -28,8 +30,22 @@ build-backend = "poetry.core.masonry.api"
 [tool.ruff]
 line-length = 100
 select = ["F", "E", "W", "I", "N", "B", "Q"] # F: Правила Flake8 (например, неиспользуемые импорты), E: Ошибки PEP 8 (например, пробелы), W: Предупреждения PEP 8, I: Правила isort (сортировка импортов), N: Правила PEP 8 для имён B : Выявляет потенциальные баги, например, неиспользуемые переменные в циклах, Q : Проверяет стиль кавычек, ANN : Проверяет аннотации типов, D : Проверяет наличие и стиль docstrings, что важно для документации 
-ignore = ["D100", "D104"]  # Игнорировать отсутствие docstrings для модулей, пакетов 
+ignore = ["D100", "D104", "F811"]  # Игнорировать отсутствие docstrings для модулей, пакетов 
 target-version = "py310"
 
+
 [tool.pytest.ini_options]
+python_files = ["test_*.py"]
+testpaths = ["tests"]
 addopts = "--cov=src --cov-report=term-missing --cov-fail-under=95"
+
+[tool.mypy]
+files = ["src", "demo", "tests"]
+strict = false
+disallow_untyped_defs = true
+disallow_any_unimported = false
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+show_error_codes = true
